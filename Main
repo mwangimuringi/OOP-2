@@ -1,0 +1,63 @@
+import java.util.HashMap;
+import java.util.Map;
+
+class Vehicle {
+    private String id;
+    private double latitude;
+    private double longitude;
+
+    public Vehicle(String id) {
+        this.id = id;
+    }
+
+    public void setLocation(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+}
+
+class TrackingSystem {
+    private Map<String, Vehicle> vehicles;
+
+    public TrackingSystem() {
+        vehicles = new HashMap<>();
+    }
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.put(vehicle.getId(), vehicle);
+    }
+
+    public Vehicle getVehicle(String id) {
+        return vehicles.get(id);
+    }
+}
+
+public class TrackingModule {
+    public static void main(String[] args) {
+        TrackingSystem trackingSystem = new TrackingSystem();
+
+        // Add some vehicles to the tracking system
+        trackingSystem.addVehicle(new Vehicle("1"));
+        trackingSystem.addVehicle(new Vehicle("2"));
+
+        // Get a vehicle and set its location
+        Vehicle vehicle = trackingSystem.getVehicle("1");
+        vehicle.setLocation(37.7749, -122.4194); // San Francisco
+
+        // Print the location of the vehicle
+        System.out.println("Vehicle " + vehicle.getId() + " is at latitude " + vehicle.getLatitude() + " and longitude " + vehicle.getLongitude());
+    }
+}
+
